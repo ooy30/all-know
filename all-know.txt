@@ -1,0 +1,190 @@
+หลังบ้าน
+npm init
+npm install express
+
+
+เก็บ state
+this.router.navigate(['/lab-detail'], {state: {data: row}});
+history.state.data 
+
+ngx-toastr@11 --save
+
+ng rok
+ng serve --disable-host-check
+ngrok http 4200
+
+col-6 col-sm-6 col-md-4 	col-lg-3 col-xl-4 col-xxl-4
+
+คำสั่งรัน
+node server.js
+
+<i class="material-icons">donut_small</i>
+<i class="material-icons-outlined">donut_small</i>
+<i class="material-icons-two-tone">donut_small</i>
+<i class="material-icons-round">donut_small</i>
+<i class="material-icons-sharp">donut_small</i>
+
+var
+let (ใช้ได้ในวงเล็บนั้น)
+const (เปลี่ยนค่าไม่ได้)
+
+หน้าบ้าน
+
+npm install
+ng new my-dream-app
+cd my dream-app
+ng serve
+
+nvm use 12.19.0
+git checkout -b feature/account
+
+pdf.output('dataurlnewwindow');
+
+
+สร้างโฟเดอใหม่ component
+ng g c account-main-page
+
+สราง Service
+ng g s shared/services/pdf/pdf-application
+
+สราง pipe
+ng g p account-main-page
+
+http://localhost:4200/admin/account-management/list
+
+npm run start
+
+Banch develop
+
+git pull 
+git merge feature/account --no-ff     git merge feature/employment-form --no-ff       git merge feature/notification --no-ff
+ng build --prod
+git push
+
+Banch feature/account ถ้าอัพผิด 
+git pull
+git merge develop
+ng build --prod
+git push
+
+
+ng g  m book/components/room-detail --routing 
+ngx-toastr@11 --save
+
+
+
+ //"username": "smart-clinic-admin",
+   // "password": "000000"
+
+
+
+    opacity: 0.5;
+
+//funtion 
+selectedRows : any;
+
+
+Number(v.totalamount).toLocaleString('en-GB',{minimumFractionDigits: 2})
+
+
+onUserRowSelect(event) {
+    this.selectedRows = event.selected;
+    this.selectedRows.forEach(element => {
+      console.log('select'+element)
+    });
+    
+    console.log(event)
+  }
+
+//in setting 
+selectMode: 'multi',
+
+// in html
+(userRowSelect)="onUserRowSelect($event)"
+
+
+disabled
+<option disabled value="0">-- Please Select Department --</option>
+
+
+
+//stock
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+@ViewChild("myTabs", { static: true, read: NgbTabset }) myTabs: NgbTabset;
+ this.myTabs.select("tab-1");
+
+
+this.From.controls['isvoid'].setValue('');
+this.Form.patchValue(event.data)
+
+npm audit fix
+
+//Python error 
+https://phoenixnap.com/kb/how-to-install-python-3-windows
+
+npm install -g windows-build-tools
+
+https://github.com/nodejs/node-gyp#on-windows
+
+npm i -s node-sass
+
+////////////////////
+
+filter_input(even: any) {
+    this.activeDayIsOpen = false;
+
+    const val = even.target.value.toLowerCase();
+    console.log(val);
+    this.appointment = this.filterPipe.transform(this.appointment_filter, {
+      $or: [
+        { staffname: val },
+        { customername: val },
+        { appointmentid: val },
+        { casename: val },
+        { bookingstatusname: val },
+      ],
+    });
+    console.log(this.appointment);
+
+    this.loadcalender();
+    // this.events_for_filter.offset = 0;
+  }
+
+
+ไล่สี
+
+element.style {
+    background-color: #ffffff;
+    background-image: linear-gradient(
+52deg
+, #3377a12e 0%, #3379cb38 50%, #33e6841f 75%);
+}
+
+
+
+.iconmenu{
+    width: 25px;
+    margin-right: 10px;
+    padding-top: -33px;
+    margin-top: -10px;
+    margin-left: -6px;
+ }
+ .bgbgbgbg{
+    background-color: #ffffff;
+    background-image: linear-gradient(
+      177deg,
+      #3377a12e 0%,
+      #3379cb38 50%,
+      #33e6841f 75%
+    );
+ }
+
+
+
+
+
+gen model auto
+sequelize-auto -o "./app/models" -d recruitment -t mt_application -h entro-lab.com -u postgres -p 5432 -x Entronic@ -e postgres --cm c
+
+gen camal
+sequelize-auto -o "./app/models" -d recruitment -t mt_application -h entro-lab.com -u postgres -p 5432 -x Entronic@ -e postgres --cm c --cf u --cp c
