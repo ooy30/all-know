@@ -2,6 +2,7 @@
 npm init
 npm install express
 
+ทดสอบ
 
 เก็บ state
 this.router.navigate(['/lab-detail'], {state: {data: row}});
