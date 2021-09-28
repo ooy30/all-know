@@ -9,3 +9,9 @@ pm2 ls
 git fetch
 git pull
 sudo service nginx restart
+
+
+
+cd /home/front-end/mwac-front-end/
+git fetch && git pull
+systemctl restart nginx.service
