@@ -1,0 +1,26 @@
+.textCut{
+  max-width: 25vw;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+.textCut{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  overflow: hidden;
+}
+.textCut:hover {
+  overflow: visible;
+  z-index: 2048;
+ // background-color: white;
+  white-space: break-spaces !important;
+  display: block;
+  width: 90%;
+  word-wrap: break-word;
+  text-align: start;
+}
