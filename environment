@@ -8,3 +8,7 @@ export const environment = {
   production: true,
   url: 'smart-clinic'
 };
+
+
+import { environment } from '../../environments/environment';
+static BASE_URL = `https://book.fintechinno.com/${environment.url}/api/v2/tablet`;
