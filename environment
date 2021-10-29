@@ -1,0 +1,10 @@
+export const environment = {
+  production: false,
+  url: 'smart-clinic-test'
+};
+
+
+export const environment = {
+  production: true,
+  url: 'smart-clinic'
+};
