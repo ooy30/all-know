@@ -1,0 +1,8 @@
+
+          if (this.emergencyFormGroupArray.value.listEmergency) {
+            this.emergencyFormGroupArray.value.listEmergency.forEach((element, i) => {
+                formData.append('emergency'+'[' + i + ']'+'[contactName]', element.contactName );
+                formData.append('emergency'+'[' + i + ']'+'[relationID]', element.relationID);
+                formData.append('emergency'+'[' + i + ']'+'[phoneNumber]', element.phoneNumber);
+            });
+          }
