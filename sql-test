@@ -1,0 +1,8 @@
+SELECT t1.EmployeeID as EmployeeID,
+	   DATE_FORMAT(t2.WorkDate, "%d/%m/%Y") as WorkDate,
+       DATE_FORMAT(MIN(t1.Clock), "%d/%m/%Y %H:%i:%s")  as  ClockIn,
+       DATE_FORMAT(MAX(t1.Clock), "%d/%m/%Y %H:%i:%s")  as  ClockOut
+FROM test_to_day.cardscan t1
+LEFT JOIN test_to_day.workschedule t2
+ON t1.EmployeeID = t2.EmployeeID
+GROUP BY t1.EmployeeID
