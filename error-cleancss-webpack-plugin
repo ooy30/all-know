@@ -1,0 +1,34 @@
+92% chunk asset optimization cleancss-webpack-pluginC:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\optimizer\level-2\properties\populate-components.js:30
+          throw e;
+          ^
+
+TypeError: Cannot read property '0' of undefined
+    at transition (C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\optimizer\level-2\break-up.js:566:93)
+    at Object.breakUp (C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\optimizer\level-2\break-up.js:466:28)
+    at populateComponents (C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\optimizer\level-2\properties\populate-components.js:17:42)
+    at optimizeProperties (C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\optimizer\level-2\properties\optimize.js:19:3)
+    at reduceSelector (C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\optimizer\level-2\reduce-non-adjacent.js:161:3)
+    at reduceComplexNonAdjacentCases (C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\optimizer\level-2\reduce-non-adjacent.js:130:7)
+    at reduceNonAdjacent (C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\optimizer\level-2\reduce-non-adjacent.js:55:3)
+    at level2Optimize (C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\optimizer\level-2\optimize.js:88:5)
+    at optimize (C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\clean.js:147:5)
+    at C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\clean.js:120:29
+    at C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\reader\read-sources.js:26:64
+    at loadOriginalSources (C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\reader\load-original-sources.js:26:5)
+    at C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\reader\read-sources.js:26:14
+    at applySourceMaps (C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\reader\apply-source-maps.js:34:5)
+    at C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\reader\read-sources.js:25:12
+    at fromStyles (C:\Users\Ooy\Documents\smart-clinic-front-end\node_modules\clean-css\lib\reader\read-sources.js:152:5)
+    
+    
+    
+    
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
