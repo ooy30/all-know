@@ -15,3 +15,5 @@ sudo service nginx restart
 cd /home/front-end/mwac-front-end/
 git fetch && git pull
 systemctl restart nginx.service
+
+ng serve --prod --optimization=false
