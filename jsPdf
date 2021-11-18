@@ -1,0 +1,73 @@
+    download(data) {
+        console.log(data);
+        const bx = document.getElementById('demoQrcode').innerHTML;
+        const qrCode = bx.split('src="')[1].split('"')[0];
+        const doc = new jsPDF({orientation: 'l', unit: 'mm', format: [100, 50]});
+        const imgWUIC = new Image();
+        const imgDent = new Image();
+        imgWUIC.src = 'assets/images/logoBarcode.png';
+        imgDent.src = 'assets/images/LogoDentWUIC.png';
+        doc.addFont('assets/fonts/LibreBarcode128-Regular.ttf', 'bacode', 'normal');
+        doc.addFont('assets/fonts/fontawesome-webfont.ttf', 'awe', 'normal');
+
+        doc.addFont('assets/fonts/THSarabunNew.ttf', 'ThSarabun', 'normal');
+        doc.addFont('assets/fonts/THSarabunNew-Bold.ttf', 'ThSarabun', 'bold');
+
+
+        doc.addImage(imgDent, 'png', 7, 2, 12, 20);
+
+        doc.setFontSize(9);
+        doc.setFont(`ThSarabun`, 'bold');
+        doc.text('ศูนย์สุขภาพช่องปากขั้นสูง', 57, 5, {align: 'center'});
+        doc.text('วิทยาลัยทันตแพทยศาสตร์นานาชาติ มหาวิทยาลัยวลัยลักษณ์', 57, 8, {align: 'center'});
+
+        doc.setFontSize(7);
+        doc.setFont(`ThSarabun`, 'normal');
+        doc.text('73 ถนนพระรามที่ 6 สามเสนใน พญาไท กรุงเทพมหานคร 10400 โทร 02-299-0935', 57, 10, {align: 'center'});
+
+
+        doc.setFontSize(9);
+        doc.setFont(`ThSarabun`, 'bold');
+        doc.text('Center for Advanced Oral Health', 57, 15, {align: 'center'});
+        doc.text('Walailak University International College of Dentistry', 57, 18, {align: 'center'});
+
+        doc.setFontSize(7);
+        doc.setFont(`ThSarabun`, 'normal');
+        doc.text('73 Rama VI Road, Samsen Nai, Phaya Thai, Bangkok 10400 Tel 02-299-0935', 57, 20, {align: 'center'});
+
+
+        // doc.text('test', 57, 25, { align: 'left' });
+        // doc.text('test', 57, 30, { align: 'right' });
+        doc.setDrawColor(160, 32, 240);
+        doc.setLineWidth(1.5);
+        doc.line(95, 23, 28, 23);
+
+
+        doc.setFontSize(9);
+        doc.setFont(`ThSarabun`, 'bold');
+        doc.text(data.visitorname, 5, 27);
+        doc.text('HN: ' + data.hn, 5, 30);
+        doc.addImage(qrCode, 'png', 5, 32, 15, 15);
+
+        doc.setFontSize(9);
+        doc.setFont(`ThSarabun`, 'bold');
+        doc.text(data.requestbyname, 95, 27, {align: 'right'});
+        doc.text(data.requestdate, 95, 30, {align: 'right'});
+
+        doc.setDrawColor(255, 140, 0);
+        doc.setLineWidth(1);
+        doc.line(80, 47, 5, 47);
+
+
+        doc.addImage(imgWUIC, 'png', 80, 35, 15, 7);
+        doc.setFontSize(15);
+        doc.setFont(`bacode`, 'normal');
+        doc.text(data.requestid, 88, 45, {align: 'center'});
+        doc.setFontSize(8);
+        doc.setFont(`ThSarabun`, 'normal');
+        doc.text(data.requestid, 88, 47, {align: 'center'});
+
+
+        doc.save(data.requestid + '.pdf');
+        // doc.output('dataurlnewwindow');
+    }
