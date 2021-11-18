@@ -1,0 +1,35 @@
+      ///////////////////////////////////////////////////////////
+      const example = async () => {
+        const dataReturn = await this.openDialogConfirm(item);
+      }
+
+      await example();
+      
+      
+      ///////////////////////////////////////////////////////////
+          const example = async () => {
+          for (let order of result.listOrderPreSet) {
+            const dataReturn = await this.checkTypeOrder(order);
+          }
+        }
+        await example();
+     ////////////////////////////////////////////////////////////
+      
+      
+      async openDialogConfirm(item): Promise<any> {
+    const dialogRef = this.dialog.open(InteractionMedicineConfirmComponent, {
+      width: '400px',
+      data: { haveReason: false, item: item }
+    });
+
+    return dialogRef.afterClosed()
+      .toPromise()
+      .then(async (result) => {
+        if (result) {
+          this.loading = false;
+          return await this.checkAllergySetting(item);
+        }else{
+          return ;
+        }
+      });
+  }
