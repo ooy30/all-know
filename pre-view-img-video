@@ -1,0 +1,118 @@
+ <!-- <div class="col-md-12" style="text-align: start;">
+                                    <div class="video">
+                                        <video controls (click)="toggleVideo($event)" #videoPlayer>
+                                            <source *ngIf="videoUrls" [src]="videoUrls" type="video/*" />
+                                            Browser not supported
+                                        </video>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img *ngIf="imageUrls" [src]="imageUrls" />
+                                </div>
+                                
+                                <div>
+                                    <video *ngIf="videoUrls" [src]="videoUrls" ></video>
+                                </div>
+                                
+                                <div class="video">
+                                    <video controls (click)="toggleVideo($event)" #videoPlayer>
+                                        <source *ngIf="videoUrls" [src]="videoUrls" type="video/*" />
+                                        Browser not supported
+                                    </video>
+                                </div> -->
+
+                                <div class="col-md-12" style="text-align: start;">
+                                  <img [src]="url" *ngIf="format==='image' && url" style="width: 100%;height: 100%;"> <br/>
+                                  <video [src]="url" *ngIf="format==='video' && url" style="width: 100%;height: 100%;" controls></video>
+                                </div>
+                                
+                                
+                                
+                                
+
+  @ViewChild("videoPlayer", { static: false }) videoplayer!: ElementRef;
+  isPlay: boolean = false;
+  toggleVideo(event: any) {
+    this.videoplayer.nativeElement.play();
+  }
+  playPause() {
+    var myVideo: any = document.getElementById("my_video_1");
+    if (myVideo.paused) myVideo.play();
+    else myVideo.pause();
+  }
+
+  makeBig() {
+    var myVideo: any = document.getElementById("my_video_1");
+    myVideo.width = 560;
+  }
+
+  makeSmall() {
+    var myVideo: any = document.getElementById("my_video_1");
+    myVideo.width = 320;
+  }
+
+  makeNormal() {
+    var myVideo: any = document.getElementById("my_video_1");
+    myVideo.width = 420;
+  }
+
+  skip(value: any) {
+    let video: any = document.getElementById("my_video_1");
+    video.currentTime += value;
+  }
+
+  restart() {
+    let video: any = document.getElementById("my_video_1");
+    video.currentTime = 0;
+  }
+
+
+
+  imageUrls: any;
+  videoUrls: any;
+ async onSelectFile(event: any) {
+    const files = event.target.files;
+    if (files) {
+      for (const file of files) {
+        const reader = new FileReader();
+        reader.onload = async(e: any) => {
+          if (file.type.indexOf("image") > -1) {
+            console.log('img', e);
+            // var w = window.open("");  `
+            // w.document.write(image.outerHTML);
+            var image = new Image();
+            image.src = e.target.result;
+            this.imageUrls = reader.result;
+          } else if (file.type.indexOf("video") > -1) {
+            this.videoUrls = reader.result;
+            console.log('video', e);
+          }
+        };
+        reader.readAsDataURL(file);
+        //     const reader = new FileReader();
+        // reader.onload = (e) => (this.imagesProfile_show = reader.result);
+        // reader.readAsDataURL(file);
+        // window.open('', "_blank");
+        //     document.open();
+        //     document.write(image.outerHTML);
+        //     document.close();
+      }
+    }
+  }
+  
+  
+  
+   // onSelectFileData(file:File) {
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     if(file.type.indexOf('image')> -1){
+  //       this.format = 'image';
+  //     } else if(file.type.indexOf('video')> -1){
+  //       this.format = 'video';
+  //     }
+  //     reader.onload = (event) => {
+  //       this.url =  reader.result;
+  //     }
+  //   }
+  // }
