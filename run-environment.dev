@@ -1,5 +1,7 @@
  ng serve -c dev
  
+ 
+ ///add in file angular.json
  "configurations": {
             "production": {
               "fileReplacements": [
