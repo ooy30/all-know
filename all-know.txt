@@ -10,6 +10,9 @@ history.state.data
 
 ngx-toastr@11 --save
 
+ng g  m book/components/room-detail --routing 
+ng g  c book/components/room-detail
+
 ng rok
 ng serve --disable-host-check
 ngrok http 4200
