@@ -1,0 +1,94 @@
+ 
+ public clickOpenFile(item: IFile){
+    if (item.file instanceof Blob) {
+      window.open(URL.createObjectURL(item.file), '_blank')
+    }
+  }
+ 
+ 
+ openFilePDF(file: File) {
+    var fileData = new Blob([file], { type: 'application/pdf' });
+    // var fileURL = URL.createObjectURL(fileData);
+    // window.open(fileURL);
+    const url = window.URL.createObjectURL(fileData);
+    window.open(url);
+  }
+  
+  openModalShowFile(file: any): void {
+
+    if (file.type.indexOf('image') > -1) {
+      this.showImgVideo.data = file;
+      this.showImgVideo.openModal();
+    } else if (file.type == 'application/pdf') {
+      var fileData = new Blob([file], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(fileData);
+      window.open(url);
+    }
+  }
+  
+    private validateFile(file: any) {
+    var format = '';
+    let flag = false;
+    if (file !== undefined) {
+      let sizeFileMB = (file.size / 1024) / 1024;
+      sizeFileMB = parseFloat(sizeFileMB.toFixed(2))
+
+      if (file.type.indexOf('image') > -1) {
+        format = 'image';
+      }
+
+      if ((file.type == 'application/pdf' || format == 'image') && sizeFileMB <= 10) {
+        flag = true;
+      }
+      if (file.type !== 'application/pdf' && format !== 'image') {
+        this.showError('กรุณาเลือกไฟล์รูปภาพหรือไฟล์ PDF เท่านั้น');
+      } else
+        if (sizeFileMB > 10) {
+          this.showError('ไฟล์มีขนาดเกินที่กำหนด');
+        }
+    }
+    return flag;
+  }
+  
+  
+  
+  
+  openModalShowFile(file: any): void {
+
+    if (file.type.indexOf('image') > -1) {
+      this.showImgVideo.data = file;
+      this.showImgVideo.openModal();
+    } else if (file.type == 'application/pdf') {
+      var fileData = new Blob([file], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(fileData);
+      window.open(url);
+    }
+  }
+
+  public browseFile(file: any) {
+    if (file.target.files[0] == null) {
+      return
+    }
+    let files: File = file.target.files[0];
+    try {
+      if (this.validateFile(files)) {
+        this.listFile.push(files);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  public browseFileExporpriate(file: any) {
+    if (file.target.files[0] == null) {
+      return
+    }
+    let files: File = file.target.files[0];
+    try {
+      if (this.validateFile(files)) {
+        this.listFileExporpriate.push(files);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
