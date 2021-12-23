@@ -13,6 +13,11 @@ ngx-toastr@11 --save
 ng g  m book/components/room-detail --routing 
 ng g  c book/components/room-detail
 
+this.formCandidate02.controls[this.Cfg.institutionName.field].setValidators([Validators.nullValidator]);
+this.formCandidate02.controls[this.Cfg.institutionName.field].setValidators([Validators.required]);
+this.formCandidate02.controls[this.Cfg.institutionName.field].updateValueAndValidity();
+
+
 ng rok
 ng serve --disable-host-check
 ngrok http 4200
