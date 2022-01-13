@@ -44,7 +44,8 @@ ng new my-dream-app
 cd my dream-app
 ng serve
 
-nvm use 12.19.0
+nvm install 12.20.0
+nvm use 12.20.0
 git checkout -b feature/account
 
 pdf.output('dataurlnewwindow');
