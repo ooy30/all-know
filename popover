@@ -1,0 +1,14 @@
+<button class="hoverable"  [ngbPopover]="currentImage" placement="right"></button>
+                
+       <ng-template #currentImage>
+          <div (click)="openDialogTakePhoto('data')" class="hoverFontP" style="cursor: pointer;display: flex;margin-top: 7px;" >
+            <mat-icon  aria-hidden="false" aria-label="Example home icon" style="cursor: pointer;">photo_camera</mat-icon>
+            <p class="fontP">Camera</p>
+          </div>
+          <div class="hoverFontP">
+            <label class="hoverable" for="fileInput" style="cursor: pointer;display: flex;">
+              <mat-icon aria-hidden="false" aria-label="Example home icon">photo_camera_back</mat-icon>
+              <p class="fontP" style="margin-top: 3px;">Gallery</p>
+            </label>
+          </div>
+        </ng-template>
