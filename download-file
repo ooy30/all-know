@@ -1,0 +1,22 @@
+import * as JSZip from 'jszip';
+import { saveAs } from 'file-saver';
+
+saveAs(files,fileName);
+
+
+downLoadZipFile() {
+    var zip = new JSZip();
+    // this.listFilePlaceMediaShow.forEach(element => {
+    //   zip.file(element.fileName, element.src.split(',')[1], { base64: true });
+    // });
+    this.fileZipList.forEach((element, index) => {
+       saveAs(element.files, element.value.fileName);
+       zip.file(element.value.fileName, element.files);
+    });
+
+    // zip.generateAsync({ type: "blob" }).then(function (blob) {
+    //   saveAs(blob, "downloadables.zip");
+    // }, function (err) {
+    //   console.log('err: ' + err);
+    // });
+  }
