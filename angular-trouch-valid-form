@@ -1,0 +1,59 @@
+ [x: string]: any;
+  setTouch(name: string) {
+    if (this[name].controls) {
+      const controls = this[name].controls;
+      _.forEach(controls, control => {
+        control.markAsTouched({ onlySelf: true });
+        control.markAsDirty({ onlySelf: true });
+      });
+    }
+  }
+
+  validate(name: string): boolean {
+    this.setTouch(name);
+    for (const key of Object.keys(this[name].controls)) {
+      if (this[name].controls[key].invalid) {
+        const invalidControl = this.elRef.nativeElement.querySelector('[formcontrolname="' + key + '"]');
+        invalidControl.focus();
+        break;
+      }
+    }
+    return this[name].valid;
+  }
+  
+  
+  
+  
+  /////formArray
+  this.headListForm = this.formData.get('headList') as FormArray;
+  
+  [x: string]: any;
+  setTouchFormArray(name: string) {
+    if (this[name].controls) {
+      this[name].controls.forEach((element: any) => {
+        const controls = element.controls;
+        _.forEach(controls, control => {
+          control.markAsTouched({ onlySelf: true });
+          control.markAsDirty({ onlySelf: true });
+        });
+      });
+    }
+  }
+
+  validateFormArray(name: string): boolean {
+    this.setTouchFormArray(name);
+    let notFind = true;
+    this[name].controls.forEach((element: any, index: number) => {
+      if(notFind)
+       for (const key of Object.keys(element.controls)) {
+        if (element.invalid && element.controls[key].invalid) {
+          console.log(element.invalid);
+          const invalidControlText = document.getElementById('titleDesc' + index);
+          if (invalidControlText) { invalidControlText.focus(); }
+          notFind = false;
+        }
+      }
+    });
+    return this.formData.valid;
+  }
+
