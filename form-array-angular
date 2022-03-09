@@ -1,0 +1,57 @@
+headListForm!: FormArray;
+this.headListForm = this.formData.get('headList') as FormArray;
+
+  initForm() {
+    this.formData = this.fb.group({
+      boardType: 1,
+      headList: new FormArray([])
+    });
+  }
+
+  addFormHeadList(value: any) {
+    this.headListForm.push(this.fb.group({
+      addDesc: [value.addDesc ? value.addDesc : null],
+      boardType: [value.boardType ? value.boardType : null],
+      headSeqno: [value.headSeqno ? value.headSeqno : null],
+      status: [value.status ? value.status : null],
+      titleDesc: [value.titleDesc ? value.titleDesc : null, [Validators.required]],
+      updBy: [value.updBy ? value.updBy : null],
+      updDate: [value.updDate ? value.updDate : null]
+    }));
+  }
+
+
+
+<form class="p-2" [formGroup]="formData">
+                   <div formArrayName="headList"
+                    *ngFor="let item of  headListForm.controls; let indexList = index">
+
+                    <div  [formGroupName]="indexList">
+                        <div class="form-group row mt-2">
+                            <div class="col-md-4 col-form-label float-right">
+                                <label *ngIf="item.get('titleDesc')?.value"  class="label-relative"><img class="img-edit" src="assets/icons/edit.png" alt=""> </label>
+                                <label class="label-relative"><i class="far fa-trash-alt text-danger cursor-pointer icon-del"></i> </label>
+                                <label Add-RedStar>หัวข้อหลัก </label>
+                            </div>
+                            <div class="col-md-5">
+                                <input [id]="'titleDesc'+indexList" type="text" class="form-control w-100" formControlName="titleDesc">
+                                <validation-message [control]="item.get('titleDesc')!">
+                                </validation-message>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-4 col-form-label float-right">
+                                <label>รายละเอียด </label>
+                            </div>
+                            <div class="col-md-5">
+                                <textarea type="text" class="form-control" formControlName="addDesc" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div> 
+                </form>
+                
