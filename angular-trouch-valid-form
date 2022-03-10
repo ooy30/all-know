@@ -48,7 +48,7 @@
        for (const key of Object.keys(element.controls)) {
         if (element.invalid && element.controls[key].invalid) {
           console.log(element.invalid);
-          const invalidControlText = document.getElementById('titleDesc' + index);
+          const invalidControlText = document.getElementById(key + index);
           if (invalidControlText) { invalidControlText.focus(); }
           notFind = false;
         }
