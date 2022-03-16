@@ -2,6 +2,8 @@
 npm init
 npm install express
 
+collor : '#' + (Math.random().toString(16) + "000000").substring(2, 8)
+
 ทดสอบ
 
 เก็บ state
