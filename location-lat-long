@@ -12,3 +12,24 @@ getLocation(): void{
        console.log("No support for geolocation")
     }
   }
+  
+  
+  
+  //////between lat long
+      var lat1 = -35.52985551178924;
+    var lon1 = 100.5022;
+    var lat2 = 13.7539;
+    var lon2 = 100.5022;
+
+    var R = 6371; // km
+    var dLat = this.toRadData(lat2 - lat1);
+    var dLon = this.toRadData(lon2 - lon1);
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(this.toRadData(lat1)) * Math.cos(this.toRadData(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    console.log("ระยะทางได้ผลลัพธ์ = " + d);
+
+ toRadData(value: number) {
+    return value * Math.PI / 180;
+  }
