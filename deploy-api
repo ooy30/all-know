@@ -1,3 +1,6 @@
+conect host
+root@128.199.185.218
+
 //api
 git fetch
 git pull
