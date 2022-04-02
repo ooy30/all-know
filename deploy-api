@@ -1,6 +1,12 @@
 conect host
 root@128.199.185.218
 
+ดูรายละเอียน domain
+cd etc
+cd nginx/
+cd conf.d/
+cat ./mwac.conf
+
 //api
 git fetch
 git pull
