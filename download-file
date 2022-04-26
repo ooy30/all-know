@@ -20,3 +20,8 @@ downLoadZipFile() {
     //   console.log('err: ' + err);
     // });
   }
+  
+  
+  
+//brow file
+<input name="foo" type="file" accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps">
