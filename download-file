@@ -25,3 +25,5 @@ downLoadZipFile() {
   
 //brow file
 <input name="foo" type="file" accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps">
+<input #tagFile [id]="id" type="file" [attr.multiple]="config?.isMultipleFilesInput ? config?.isMultipleFilesInput : null" [accept]="getAcceptFileType()"
+    (change)="changeSelectedFile($event)" hidden>
