@@ -1,0 +1,22 @@
+https://stackblitz.com/edit/angular-navigation-scrollintoview-smooth?file=src%2Fapp%2Fapp.component.ts
+
+Navigate(elem: HTMLElement) {
+    elem.scrollIntoView({ behavior: 'smooth' });
+  }
+  
+  <div class="nav">
+	<div (click)="Navigate(home)">Home</div>
+	<div (click)="Navigate(about)">About</div>
+	<div (click)="Navigate(contact)">Contact</div>
+</div>
+<div class="sections">
+	<div #home class="container">
+		<h3>Home</h3>
+	</div>
+	<div #about class="container">
+		<h3>About</h3>
+	</div>
+	<div #contact class="container">
+		<h3>Contact</h3>
+	</div>
+</div>
