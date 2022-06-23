@@ -1,0 +1,191 @@
+.map-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hight-map {
+  height: 80vh;
+}
+
+.hidden-detail {
+  display: none;
+}
+@media (min-width: 991.98px) {
+  .hidden-detail {
+    display: block;
+  }
+}
+.container-fluid {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+.mapboxgl-marker:hover {
+  cursor: pointer;
+}
+
+#marker {
+  background-image: url("https://docs.mapbox.com/mapbox-gl-js/assets/washington-monument.jpg");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.rounded-rect {
+  background: white;
+  // border-radius: 2px;
+  border-radius: 0px;
+  box-shadow: 0 0 50px -25px black;
+}
+
+.flex-center {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-center.left {
+  left: 0px;
+}
+
+.flex-center.right {
+  right: 0px;
+}
+
+.sidebar-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  // width: 95%;
+  // height: 97%;
+
+  // font-family: Arial, Helvetica, sans-serif;
+  // font-size: 32px;
+  // color: gray;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  width: 21px;
+  height: 3.3em;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 0 50px -25px black;
+}
+
+.sidebar-toggle.left {
+  // right: -1.5em;
+  right: -17px;
+}
+
+.sidebar-toggle.right {
+  // left: -1.5em;
+  left: -17px;
+}
+
+.sidebar-toggle:hover {
+  color: #0aa1cf;
+  cursor: pointer;
+}
+
+.sidebar {
+  transition: transform 1s;
+  z-index: 1;
+  width: 350px;
+  height: 100%;
+}
+
+.side-wh {
+  height: 95%;
+  width: 98%;
+}
+
+.collapsed-right {
+  // transition: transform 4s;
+  transition: all 0.5s ease-in;
+  right: -342px !important;
+}
+
+.collapsed-left {
+  // transition: transform 2s;
+  transition: all 0.5s ease-in-out;
+  left: -342px !important;
+}
+
+.transform-icon {
+  transition: all 1s ease-in-out;
+  transform: rotateY(180deg);
+}
+
+.tab-overflow {
+  overflow-y: auto;
+  // height: 55vh;
+}
+
+.content-overflow {
+  overflow-y: auto;
+  height: inherit;
+}
+
+.btn-blue {
+  color: white;
+  background-color: blue;
+  font-weight: bold;
+  border-radius: 2px;
+  border: none;
+  padding: 2px 10px;
+  &:active {
+    box-shadow: 0px 0px 2px 2px paleturquoise;
+  }
+}
+
+[nz-radio] {
+  display: block;
+  height: 32px;
+  line-height: 32px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tab-head {
+  background-color: blue;
+  padding: 5px 6px;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.tab-head-active {
+  border-bottom-style: double;
+  padding: 5px 6px;
+}
+
+.icon-export{
+  font-size: 30px;
+  margin: 10px;
+}
+
+.select-item{
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-yellow);
+  position: absolute;
+  left: -24px;
+  top: 1px;
+  transform: rotate(45deg);
+}

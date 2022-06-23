@@ -1,0 +1,302 @@
+<!-- <app-menu-bar></app-menu-bar> -->
+
+<div class="container-fluid mb-5">
+    <form [formGroup]="formData">
+        <div class="row pt-3">
+            <div class="col-lg-10 mb-3">
+                <div class="row">
+                    <div class="col-lg-2 pt-2 text-right">
+                        โครงการก่อสร้างที่เข้าร่วม CoST
+                    </div>
+                    <div class="col-lg-4 mt-2">
+                        <ng-select [clearable]="false" (change)="clearFormDataChang($event)" placeholder="โปรดเลือก"
+                            formControlName="searchType" class="form-select" dropdownPosition="auto">
+                            <ng-option *ngFor="let item of listDataSearch" [value]="item.value">
+                                {{item.label}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+
+                    <div class="col-lg-2 mt-2" *ngIf="searchType?.value == 1">
+                      <ng-select [clearable]="false" placeholder="โปรดเลือก" formControlName="distance" class="form-select"
+                          dropdownPosition="auto">
+                          <ng-option *ngFor="let item of dataListDistance" [value]="item.value">
+                              {{item.name}}
+                          </ng-option>
+                      </ng-select>
+                  </div>
+
+                    <div class="col-lg-2 mt-2" *ngIf="searchType?.value == 3">
+                        <ng-select  placeholder="ภาค" formControlName="regionCode" class="form-select"
+                            dropdownPosition="auto">
+                            <ng-option *ngFor="let item of listDataRegionCode" [value]="item.value">
+                                {{item.label}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+
+                    <div class="col-lg-2 mt-2" *ngIf="searchType?.value == 4">
+                      <ng-select (change)="changeProvince($event)" placeholder="จังหวัด" formControlName="provinceCode" class="form-select"
+                          dropdownPosition="auto">
+                          <ng-option *ngFor="let item of listDataProvince" [value]="item?.moiId">
+                              {{item?.moiName}}
+                          </ng-option>
+                      </ng-select>
+                  </div>
+
+                  <div class="col-lg-2 mt-2" *ngIf="searchType?.value == 4">
+                    <ng-select (change)="changeDistrict($event)" placeholder="อำเภอ/เขต" formControlName="districtCode" class="form-select"
+                        dropdownPosition="auto">
+                        <ng-option *ngFor="let item of listDataDistrict" [value]="item?.moiId">
+                            {{item?.moiName}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+
+                <div class="col-lg-2 mt-2" *ngIf="searchType?.value == 4">
+                  <ng-select placeholder="ตำบล/แขวง" formControlName="subDistrictCode" class="form-select"
+                      dropdownPosition="auto">
+                      <ng-option *ngFor="let item of listDataSubDistrict" [value]="item?.moiId">
+                          {{item?.moiName}}
+                      </ng-option>
+                  </ng-select>
+              </div>
+
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-lg-2 pt-2 text-right">
+                        เงื่อนไข
+                    </div>
+                    <div class="col-lg-2 mt-2">
+                        <ng-select [clearable]="false" placeholder="โปรดเลือกปีงบประมาณ" formControlName="budgetYear" class="form-select"
+                            dropdownPosition="auto">
+                            <ng-option *ngFor="let item of listYear" [value]="item">
+                                {{item}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+
+                    <div class="col-lg-4 mt-2">
+                        <input class="form-control w-100" type="text" formControlName="projId"
+                            placeholder="โปรดระบุเลขที่โครงการ e-GP หรือเลขที่ CoST หรือชื่อโครงการ">
+                    </div>
+
+                    <div class="col-lg-2 mt-2">
+                        <ng-select placeholder="หน่วยงาน" formControlName="deptId" class="form-select"
+                            dropdownPosition="auto">
+                            <ng-option *ngFor="let item of deptList" [value]="item.deptId">
+                                {{item.deptName}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+
+                    <div class="col-lg-2 mt-2">
+                        <ng-select placeholder="ประเภทการก่อสร้างของโครงการ CoST" formControlName="sectorId" class="form-select"
+                            dropdownPosition="auto">
+                            <ng-option *ngFor="let item of listDataSector" [value]="item?.sectorId">
+                                {{item?.sectorName}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- <div class="col-lg-1 mb-3">
+                <nz-radio-group formControlName="radioProj">
+                    <label nz-radio nzValue="A">ทุกโครงการ</label>
+                    <label nz-radio nzValue="B">โครงการล่าช้า</label>
+                </nz-radio-group>
+            </div> -->
+            <div class="col-lg-2 mb-3 text-center" style="align-self: center">
+                <button class="btn-blue pr-5 pl-5" (click)="searchData()">
+                    ค้นหา
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="container-fluid">
+        <!-- <div class="col-lg-2 hidden-detail">
+
+        </div> -->
+        <div class="col-lg-12 hight-map">
+            <div id="map" class="map-container">
+                <div id="left" class="sidebar flex-center left collapsed">
+
+                    <div class="sidebar-content rounded-rect flex-center">
+                        <div class="form-group-title row side-wh">
+                            <div class="col-md-12 mt-3"
+                                [ngStyle]="{'overflow-y': 'auto','height': (containerRef2.offsetHeight - 170) +'px'}">
+                                <div class="col-md-12 content-overflow"
+                                    *ngIf="listPointInMap.length > 0; else elseTemplate2">
+                                    <div (click)="selectDataPoint(item?.costId)" *ngFor="let item of listPointInMap; let i=index" class="cursor-pointer" style="position: relative;">
+                                        <div *ngIf="item?.costId == selectPoint?.costId;" class="select-item">
+
+                                        </div>
+                                        <b>{{i+1}}. {{item?.projName}}</b>
+                                        <p class="text-info">{{item?.projMoney | number : '1.2-2'}} ล้านบาท</p>
+                                    </div>
+                                </div>
+                                <ng-template #elseTemplate2>
+                                    <div class="col-md-12 text-center" >
+                                        <b>ไม่พบข้อมูล</b>
+                                    </div>
+                                </ng-template>
+                            </div>
+
+                            <div class="col-md-12 text-center">
+                                <span class="tab-head mr-2">ดูรายละเอียดที่เว็บไซต์ CoST</span>
+                            </div>
+
+                            <div class="col-md-12 text-center text-success">
+                                <span class="icon-export">
+                                    <i nz-icon nzType="file-excel" nzTheme="outline"></i>
+                                </span>
+                                <span class="icon-export text-danger">
+                                    <i nz-icon nzType="file-pdf" nzTheme="outline"></i>
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div class="sidebar-toggle left" (click)="toggleSidebar('left')">
+                            <i id="icon-left" nz-icon nzType="caret-left" nzTheme="outline"></i>
+                        </div>
+                    </div>
+                </div>
+                <div id="right" class="sidebar flex-center right collapsed">
+                    <div class="sidebar-content rounded-rect flex-center" #containerRef2>
+                         <ng-template #elseTemplate>
+                            <div class="form-group-title row">
+                                <b>โปรดเลือกข้อมูลเพื่อดูรายละเอียด</b>
+                            </div>
+                        </ng-template>
+
+                        <div *ngIf="selectPoint?.costId; else elseTemplate" class="form-group-title row side-wh" >
+                            <div class="col-md-12">
+                                <span [ngClass]="{'tab-head-active': tabHead == 1}" (click)="tabHead = 1"
+                                    class="tab-head mr-2">รายละเอียดโครงการ</span>
+                                <span [ngClass]="{'tab-head-active': tabHead == 2}" (click)="tabHead = 2"
+                                    class="tab-head">สถิติโครงการ</span>
+                            </div>
+                            <!-- content-overflow -->
+                            <div class="col-md-12 mt-2"
+                                [ngStyle]="{'overflow-y': 'auto','height': (containerRef2.offsetHeight - 200) +'px'}">
+                                <div [hidden]="tabHead != 1" class="w-100 text-left">
+
+                                    <b class="text-info">ชื่อโครงการ</b>
+                                    <p>{{selectPoint?.projName}}</p>
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <b class="text-info"> เลขที่โครงการ e-GP</b>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>{{selectPoint?.projIdEgp}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <b class="text-info">เลขที่ CoST</b>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>{{selectPoint?.costId}}</p>
+                                        </div>
+                                    </div>
+
+                                    <b class="text-info">หน่วยงานเจ้าของโครงการ</b>
+                                    <p>{{selectPoint?.deptName}}</p>
+
+                                    <b class="text-info">สถานะโครงการ</b>
+                                    <p>{{selectPoint?.statusStepDesc}}</p>
+
+                                    <b class="text-info">วงเงินงบประมาณโครงการ</b>
+                                    <p>{{selectPoint?.projMoney | number : '1.2-2'}} ล้านบาท</p>
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <b class="text-info"> ผู้ค้าที่เป็นคู่สัญญา</b>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <b class="text-info"> มูลค่าสัญญา</b>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <p>{{selectPoint?.contractData?.corporateName}}</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>{{selectPoint?.contractData?.contractPrice | number : '1.2-2'}} ล้านบาท</p>
+                                        </div>
+                                    </div>
+
+
+
+                                    <b class="text-info">ระยะเวลาโครงการ</b>
+                                    <p>{{selectPoint?.contractData?.contractStdate}} - {{selectPoint?.contractData?.contractFhdate}} &nbsp; &nbsp; &nbsp; {{selectPoint?.contractData?.contractDays}} วัน</p>
+
+
+                                </div>
+                                <div [hidden]="tabHead != 2" class="w-100 text-center">
+                                    <div class="col-lg-12 text-center">
+                                        <p class="text-info">ร้อยละการเปิดเผยข้อมูล</p>
+                                    </div>
+                                    <nz-progress nzType="circle" [nzPercent]="selectPoint?.contractData?.percOpenData"
+                                        [nzStrokeColor]="{ '0%': '#108ee9', '100%': '#87d068' }"></nz-progress>
+
+                                    <div class="m-5"></div>
+                                    <div class="col-lg-12 text-center">
+                                        <p class="text-info">ร้อยละการแข่งขัน</p>
+                                    </div>
+                                    <nz-progress nzType="circle" [nzPercent]="selectPoint?.contractData?.percSave"
+                                        [nzStrokeColor]="{ '0%': '#108ee9', '100%': '#87d068' }"></nz-progress>
+                                    <div class="m-5"></div>
+                                    <div class="col-lg-12 text-center">
+                                        <p class="text-info">ร้อยละการดำเนินงานเทียบกับแผน</p>
+                                    </div>
+                                    <nz-progress nzType="circle" [nzPercent]="selectPoint?.contractData?.percPlan"
+                                        [nzStrokeColor]="{ '0%': '#108ee9', '100%': '#87d068' }"></nz-progress>
+                                    <div class="m-2"></div>
+                                    <div class="col-lg-12 text-center">
+                                      <b class="text-success">ดำเนินงานเร็วกว่าแผน</b>
+                                        <!-- <b class="text-success">{{selectPoint?.contractData?.winnerTin}}</b> -->
+                                    </div>
+                                    <div class="m-5"></div>
+                                    <div class="col-lg-12 text-center">
+                                        <p class="text-info">ร้อยละการประหยัด</p>
+                                    </div>
+                                    <div class="col-lg-12 text-center">
+                                        <b class="text-success">{{selectPoint?.contractData?.percSaveBudget}} %</b>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 text-center">
+                                <span class="tab-head mr-2">รายละเอียดโครงการเพิ่มเติม</span>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <span class="tab-head mr-2">แจ้งข้อร้องเรียนเกี่ยวกับโครงการ</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="sidebar-toggle right" (click)="toggleSidebar('right')">
+                            <i id="icon-right" nz-icon nzType="caret-right" nzTheme="outline"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div id="map" class="map-container"> </div> -->
+        </div>
+        <!-- <div class="col-lg-2 hidden-detail">
+
+        </div> -->
+    </div>
+</div>
