@@ -15,7 +15,7 @@ getLocation(): void{
   
   
   
-  //////between lat long
+  //////between lat long 1
       var lat1 = -35.52985551178924;
     var lon1 = 100.5022;
     var lat2 = 13.7539;
@@ -34,11 +34,50 @@ getLocation(): void{
     return value * Math.PI / 180;
   }
   
+  //////between lat long 2
+  function findDistance() {
+   var R = 6371e3; // R is earth’s radius
+   var lat1 = 15.2204; // starting point lat
+   var lat2 = 15.074999247921625;         // ending point lat
+   var lon1 = 102.4854; // starting point lon
+   var lon2 = 102.59496056508868;         // ending point lon
+   var lat1radians = toRadians(lat1);
+   var lat2radians = toRadians(lat2);
+
+   var latRadians = toRadians(lat2-lat1);
+   var lonRadians = toRadians(lon2-lon1);
+
+   var a = Math.sin(latRadians/2) * Math.sin(latRadians/2) +
+        Math.cos(lat1radians) * Math.cos(lat2radians) *
+        Math.sin(lonRadians/2) * Math.sin(lonRadians/2);
+   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+   var d = R * c;
+
+   console.log(d)
+}
+
+function toRadians(val){
+    var PI = 3.1415926535;
+    return val / 180.0 * PI;
+}
+  //END
   
   
   
   
   //////turf
+  
+    //  var center = [longitude, latitude];
+   // 
+   // var options: { steps: number,units:  Units,properties:any } = {
+  //    steps: 64,
+   //   units: 'kilometers',
+  //    properties: {test: 'test'}
+//    };
+   // var circle = turf.circle(center, length, options);
+    
+    
   npm install @turf/circle
   npm install @turf/turf
   import * as turf from '@turf/turf';
