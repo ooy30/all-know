@@ -1,0 +1,61 @@
+ <canvas id="MyChartGroup" width="400" height="200"></canvas>
+ new Chart(document.getElementById("MyChartGroup"), {
+  type: 'bar',
+  data: {
+    labels: [2017, 2018, 2019, 2020, 2021, 2022, 2023],
+    datasets: [{
+      label: "Data1",
+      type: "bar",
+      stack: "Base",
+      backgroundColor: "#eece01",
+      data: [30, 31, 32, 33, 34, 35, 36],
+    }, {
+      label: "Data2",
+      type: "bar",
+      stack: "Base",
+      backgroundColor: "#87d84d",
+      data: [15, 16, 17, 18, 19, 20, 21],
+    }, {
+      label: "Data3",
+      type: "bar",
+      stack: "Sensitivity",
+      backgroundColor: "#f8981f",      
+      data: [20, 21, 22, 23, 24, 25, 26],
+    }, {
+      label: "Data4",
+      type: "bar",
+      stack: "Sensitivity",
+      backgroundColor: "#396e75",
+      backgroundColorHover: "#396E75",
+      data: [7, 11, 12, 6, 14, 15, 16]
+    }, {
+      label: "Data5",
+      type: "bar",
+      stack: "test",
+      backgroundColor: "#38539a",      
+      data: [20, 21, 22, 23, 24, 25, 26],
+    }, {
+      label: "Data6",
+      type: "bar",
+      stack: "test",
+      backgroundColor: "#A65523",
+      backgroundColorHover: "#396E75",
+      data: [8, 11, 12, 8, 14, 15, 16]
+    }]
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        stacked: true,
+        ticks: {
+          beginAtZero: true,
+          maxRotation: 0,
+          minRotation: 0
+        }
+      }],
+      yAxes: [{
+        stacked: true,
+      }]
+    },
+  }
+});
