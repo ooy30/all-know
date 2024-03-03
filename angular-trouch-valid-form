@@ -57,3 +57,45 @@
     return this.formData.valid;
   }
 
+ validate(): boolean {
+    this.formSubmitted = true;
+    for (const key of Object.keys(this.formGroup.controls)) {
+      this.formGroup.controls[key].markAsTouched({ onlySelf: true });
+      this.formGroup.controls[key].markAsDirty({ onlySelf: true });
+    }
+    for (const key of Object.keys(this.formGroup.controls)) {
+      if (this.formGroup.controls[key].invalid) {
+        const invalidControl = this.elRef.nativeElement.querySelector('[formcontrolname="' + key + '"]');
+        if (invalidControl) {
+          invalidControl.focus();
+          break;
+        }
+      }
+    }
+    return this.formGroup.valid;
+  }
+
+  validateFormArray(): boolean {
+    if (this.agendaListForm?.controls) {
+      for (let index = 0; index < this.agendaListForm?.controls?.length; index++) {
+        const element = this.agendaListForm?.controls[index] as any;
+        for (const key of Object.keys(element.controls)) {
+          (this.agendaListForm?.controls[index] as any)?.controls[key].markAsTouched({ onlySelf: true });
+          (this.agendaListForm?.controls[index] as any)?.controls[key].markAsDirty({ onlySelf: true });
+        }
+      }
+      for (let index = 0; index < this.agendaListForm?.controls?.length; index++) {
+        const element = this.agendaListForm?.controls[index] as any;
+        for (const key of Object.keys(element.controls)) {
+          if (element.invalid && element.controls[key].invalid) {
+            const invalidControlText = document.getElementById(`${this.prefixId}${key}${index}`);
+            if (invalidControlText) { invalidControlText.focus() }
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
