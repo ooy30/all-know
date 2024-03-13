@@ -92,3 +92,183 @@
       console.error(error);
     }
   }
+
+import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
+
+@Component({
+  // tslint:disable-next-line:component-selector
+  selector: 'new-tab-pdf',
+  templateUrl: './new-tab-pdf.component.html',
+  styleUrls: ['./new-tab-pdf.component.scss']
+})
+export class NewTabPdfComponent implements OnInit {
+  @ViewChild('OpenTemplate') openTemplate!: TemplateRef<any>;
+  @Input() source!: string;
+  @Input() title!: string;
+
+  blobUrl: any;
+
+  contentPdfType = 'application/pdf';
+  newWindow: any;
+
+  constructor() {
+    this.newWindow = window;
+  }
+
+  ngOnInit() {
+  }
+
+  openNewTab(src: any, title?: string) {
+    if (title) { this.title = title; }
+    const urlLocation = location.href;
+
+    const blob = this.convertToBlob(src, this.contentPdfType);
+    const f = new File([blob], 'fileName');
+
+    if (navigator.msSaveOrOpenBlob) {
+      navigator.msSaveOrOpenBlob(blob, `${title}.pdf`);
+    } else {
+
+      const pdfWindow = this.newWindow.open('about:blank');
+      pdfWindow.pdfUrl  = window.URL.createObjectURL(blob);
+      // new browser
+      let html = '';
+      html += '<html>';
+      html += '<head>';
+      html += '<meta charset="utf-8">';
+      html += '<meta name="viewport" content="width=device-width, initial-scale=1">';
+      html += '<base href="/">';
+      html += '<link rel="icon" type="image/x-icon" href="assets/efiling.ico">';
+      html += '<link rel="shortcut icon" type="image/x-icon" href="assets/efiling.ico"/>';
+      html += `<title>${this.title}</title>`;
+      html += '</head>';
+      html += '<body style="margin:0!important">';
+      html += `<embed width='100%' height='100%' src='${pdfWindow.pdfUrl}' type='application/pdf' />`;
+      html += '</body>';
+      html += '</html>';
+
+      setTimeout(() => {
+        pdfWindow.document.write(html);
+      }, 800);
+    }
+  }
+
+  openSrcLink(src: any, title?: string) {
+    if (title) { this.title = title; }
+    const pdfWindow = this.newWindow.open('');
+    const urlString = pdfWindow.location.href;
+    let html = '';
+    html += '<html>';
+    html += '<head>';
+    html += '<meta charset="utf-8">';
+    html += '<meta name="viewport" content="width=device-width, initial-scale=1">';
+    html += '<base href="./">';
+    html += '<link rel="icon" type="image/x-icon" href="src/assets/efiling.ico">';
+    html += '<link rel="shortcut icon" type="image/x-icon" href="src/assets/efiling.ico"/>';
+    html += `<title>${this.title}</title>`;
+    html += '</head>';
+    html += '<body style="margin:0!important">';
+    html += `<embed width='100%' height='100%' src='${src}' type='application/pdf' />`;
+    html += '</body>';
+    html += '</html>';
+    pdfWindow.document.write(html);
+  }
+
+  open(src: any, title?: string, filename?: string) {
+    if (title) { this.title = title; }
+
+
+    const blob = this.convertToBlob(src, this.contentPdfType);
+    const blobUrl = URL.createObjectURL(blob);
+
+    if (navigator.msSaveOrOpenBlob) {
+      navigator.msSaveOrOpenBlob(blob, `${filename}.pdf`);
+    } else {
+      const pdfWindow = this.newWindow.open('/');
+      const urlString = pdfWindow.location.href;
+      let html = '';
+      html += '<html>';
+      html += '<head>';
+      html += '<meta charset="utf-8">';
+      html += '<meta name="viewport" content="width=device-width, initial-scale=1">';
+      html += '<base href="./">';
+      html += '<link rel="icon" type="image/x-icon" href="assets/efiling.ico">';
+      html += '<link rel="shortcut icon" type="image/x-icon" href="assets/efiling.ico"/>';
+      html += `<title>${this.title}</title>`;
+      html += '</head>';
+      html += '<body style="margin:0!important">';
+      html += `<embed width='100%' height='100%' src='${encodeURI(blobUrl)}' type='application/pdf' />`;
+      html += '</body>';
+      html += '</html>';
+      pdfWindow.document.write(html);
+
+      const linkSource =  blobUrl; // 'data:application/pdf;base64,' + result.responseData          ;
+      const downloadLink = pdfWindow.document.createElement('a');
+      const fileName = 'sample.pdf';
+
+      downloadLink.href = linkSource;
+      downloadLink.download = fileName;
+    }
+  }
+
+  convertToBlob(base64Data: any, contentType: string): Blob {
+    const byteCharacters = atob(base64Data);
+    const byteNumbers = new Array(byteCharacters.length);
+
+    // tslint:disable-next-line:no-shadowed-variable
+    for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], {type: contentType});
+    return blob;
+  }
+
+  openFileNewTab(src: any, title?: string, fileType?: string) {
+    let contentType = '';
+    if (title) { this.title = title; }
+    if (fileType) {
+
+      contentType = fileType === '.pdf' ? ContentType.pdf : fileType === '.xls' ? ContentType.xls :
+      fileType === '.xlsx' ? ContentType.xlsx : fileType === '.json' ? ContentType.json : ContentType.pdf;
+    }
+
+    const newBlob = new Blob([src], { type: contentType });
+
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(newBlob);
+      return;
+    } else {
+
+      const pdfWindow = this.newWindow.open('about:blank');
+      pdfWindow.pdfUrl  = window.URL.createObjectURL(newBlob);
+      // new browser
+      let html = '';
+      html += '<html>';
+      html += '<head>';
+      html += '<meta charset="utf-8">';
+      html += '<meta name="viewport" content="width=device-width, initial-scale=1">';
+      html += '<base href="/">';
+      html += '<link rel="icon" type="image/x-icon" href="assets/efiling.ico">';
+      html += '<link rel="shortcut icon" type="image/x-icon" href="assets/efiling.ico"/>';
+      html += `<title>${this.title}</title>`;
+      html += '</head>';
+      html += '<body style="margin:0!important">';
+      html += `<embed width='100%' height='100%' src='${pdfWindow.pdfUrl}' type='application/pdf' />`;
+      html += '</body>';
+      html += '</html>';
+
+      setTimeout(() => {
+        pdfWindow.document.write(html);
+      }, 800);
+    }
+  }
+
+}
+enum ContentType {
+  pdf = 'application/pdf',
+  xls = 'application/vnd.ms-excel',
+  xlsx = '"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  json = 'application/json'
+}
+
