@@ -15,6 +15,7 @@
 > Negative potential consequences of an action.
 
 > [!TIP]
+>  - ERROR in node_modules/chart.js/types/adapters.d.ts:1:13 - error TS1005: '=' expected.
 $${\color{red} ERROR in node_modules/chart.js/types/adapters.d.ts:1:13 - error TS1005: '=' expected.}$$
 $\color{green}{text in red 1 import type { ChartOptions } from './index.esm';}$
 >
