@@ -28,4 +28,9 @@ $\color{green}{text in red 1 import type { ChartOptions } from './index.esm';}$
 - At node_modules/chart.js/types/adapters.d.ts line 1 fix to `import { ChartOptions } from './index.esm'`;
 
 
-<text x="45" y="15" fill="#ea4335">e</text>
+> [!CAUTION]
+- ERROR in node_modules/chart.js/types/adapters.d.ts:1:13 - error TS1005: '=' expected.
+- 1 import type { ChartOptions } from './index.esm'; 
+- node_modules/chart.js/types/adapters.d.ts:1:35 - error TS1005: ';' expected.
+- 1 import type { ChartOptions } from './index.esm';
+- At node_modules/chart.js/types/adapters.d.ts line 1 fix to `import { ChartOptions } from './index.esm'`;
