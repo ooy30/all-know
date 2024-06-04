@@ -20,7 +20,7 @@ $\color{green}{text in red 1 import type { ChartOptions } from './index.esm';}$
 >
 > <h3 style="color:#ff0000">Danger</h3>
 ```diff
-- ERROR in node_modules/chart.js/types/adapters.d.ts:1:13 - error TS1005: '=' expected.
+> - ERROR in node_modules/chart.js/types/adapters.d.ts:1:13 - error TS1005: '=' expected.
 - 1 import type { ChartOptions } from './index.esm'; 
 - node_modules/chart.js/types/adapters.d.ts:1:35 - error TS1005: ';' expected.
 - 1 import type { ChartOptions } from './index.esm';
