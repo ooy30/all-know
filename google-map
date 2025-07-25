@@ -1,0 +1,8 @@
+<iframe
+                                    width="100%"
+                                    height="100%" 
+                                    loading="lazy"
+                                    allowFullScreen
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    src="https://www.google.com/maps?q=13.7248785,100.4683014&z=15&output=embed"
+                                />
